@@ -1,31 +1,39 @@
-import { Box, Heading, HStack, Link as ChakraLink } from '@chakra-ui/react';
-import { Link } from 'remix';
+import { Box, Center, Textarea } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 export default function Index() {
+  const [message, setMessage] = useState("");
+
+  function displayMessage(evt: any) {
+    var message;
+    if (evt.origin !== "https://remix-vert-pi.vercel.app/") {
+      message = JSON.stringify(evt.data);
+      setMessage(message);
+    }
+  }
+
+  function onChangeText(e: any) {
+    setMessage(e.target.value);
+  }
+
+  useEffect(() => {
+    if (window.addEventListener) {
+      window.addEventListener("message", displayMessage, false);
+    }
+  }, [message]);
+
   return (
-    <Box fontFamily="system-ui, sans-serif" lineHeight={1.4}>
-      <Heading as="h1" color="blue.400">
-        Welcome to Remix with Chakra UI!
-      </Heading>
-      <HStack spacing={4}>
-        <ChakraLink
-          href="https://remix.run/docs"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Remix Docs
-        </ChakraLink>
-        <ChakraLink
-          target="_blank"
-          href="https://chakra-ui.com/docs/getting-started"
-          rel="noreferrer"
-        >
-          Chakra UI Docs
-        </ChakraLink>
-        <ChakraLink as={Link} color="red.400" to="/nothing-here">
-          Nothing here
-        </ChakraLink>
-      </HStack>
-    </Box>
+    <Center h="100vh" w="100vw" color={"green.300"}>
+      <Box>
+        <Textarea
+          color={"black"}
+          placeholder="Type something..."
+          value={message}
+          onChange={onChangeText}
+          w={"300px"}
+          h="400px"
+        />
+      </Box>
+    </Center>
   );
 }
