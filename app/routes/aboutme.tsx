@@ -1,7 +1,7 @@
-import { Box, Center, Heading, Text, Textarea, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Center, VStack, Box, Textarea, Heading, Text } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 
-export default function Index() {
+export default function AboutMe() {
   const [message, setMessage] = useState("");
 
   function onChangeText(e: any) {
@@ -29,7 +29,7 @@ export default function Index() {
             h="200px"
           />
         </Box>{" "}
-        <Heading as="h1">INDEX PAGE</Heading>
+        <Heading as="h1">ABOUT ME</Heading>
         <Heading as="h2">This is the H2</Heading>
         <Text>
           Sint ea pariatur ipsum ex Lorem. In occaecat velit mollit incididunt

@@ -1,4 +1,6 @@
-import React from 'react';
+import { ChakraProvider, Heading, Text, VStack } from "@chakra-ui/react";
+import { withEmotionCache } from "@emotion/react";
+import React from "react";
 import {
   Links,
   LiveReload,
@@ -7,15 +9,13 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-} from 'remix';
-import type { MetaFunction } from 'remix';
-import { VStack, Heading, ChakraProvider, Text } from '@chakra-ui/react';
-import { withEmotionCache } from '@emotion/react';
+} from "remix";
 
-import { ServerStyleContext, ClientStyleContext } from './context';
+import { ClientStyleContext, ServerStyleContext } from "./context";
 
+import type { MetaFunction } from "remix";
 export const meta: MetaFunction = () => {
-  return { title: 'Chakra UI Boilerplate' };
+  return { title: "Chakra UI Boilerplate" };
 };
 
 export default function App() {
@@ -120,7 +120,7 @@ const Document = withEmotionCache(
           {serverSyleData?.map(({ key, ids, css }) => (
             <style
               key={key}
-              data-emotion={`${key} ${ids.join(' ')}`}
+              data-emotion={`${key} ${ids.join(" ")}`}
               dangerouslySetInnerHTML={{ __html: css }}
             />
           ))}
@@ -129,7 +129,12 @@ const Document = withEmotionCache(
           {children}
           <ScrollRestoration />
           <Scripts />
-          {process.env.NODE_ENV === 'development' ? <LiveReload /> : null}
+          {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
+          <script
+            src={`https://font-size-eight.vercel.app/messages/app.js`}
+            crossOrigin="anonymous"
+            defer
+          ></script>
         </body>
       </html>
     );
